@@ -1,0 +1,18 @@
+
+{%extends "UserApp/homepage.html"%}
+
+{%block content%}
+<h1>Sign Up! </h1>
+<hr/>
+<form method="Post">
+    {%csrf_token%}
+<table class="table">
+    <tr> <td>User ID</td><td><input type="text" name="uname" required class="form-control"/></td> </tr>
+    <tr> <td>Password</td><td><input type="text" name="pwd" required class="form-control"/></td> </tr>
+    <tr> <td>EMail ID</td><td><input type="email" name="email" required 
+    class="form-control"/></td> </tr>
+    <tr> <td></td><td><button type="submit" value="Login" class="btn btn-success form-control">Register</button></td> </tr>
+
+</table>
+</form>
+{%endblock%}

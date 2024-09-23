@@ -1,0 +1,25 @@
+
+{%extends "UserApp/homepage.html"%}
+
+{%block content%}
+<table class="table" style="background-color: antiquewhite;">
+    <tr><th>Cake Name</th><th>Cake Price</th>
+         <th>Quantity</th><th>Sub Total</th></tr>
+    {%for item in items%}
+    <tr>
+        <td>{{item.cake.cake_name}} </td>        
+        <td>{{item.cake.price}}</td>
+        <td>{{item.cake.qty}}</td>
+        <td>{% widthratio item.cake.price 1 item.qty %}</td>        
+    </tr>
+</form>
+    {%endfor%}
+</table>
+<hr/>
+<center>
+    <h3>Total Amount : {{order.amount}}</h3>
+    <h3>Date of Order : {{order.date_of_order}}</h3>
+    
+</center>
+</form>
+{%endblock%}

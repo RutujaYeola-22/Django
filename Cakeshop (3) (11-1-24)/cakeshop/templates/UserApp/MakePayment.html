@@ -1,0 +1,20 @@
+
+{%extends "UserApp/homepage.html"%}
+
+{%block content%}
+<h1>Make Payment! </h1>
+<hr/>
+<form method="Post">
+    {%csrf_token%}
+<table class="table">
+    <tr> <td>Card No.</td><td><input type="text" name="cardno" required class="form-control"/></td> </tr>
+    <tr> <td>CVV </td><td><input type="text" name="cvv" required class="form-control"/></td> </tr>
+    <tr> <td>Expiry Date</td><td><input type="text" name="expiry" required 
+    class="form-control"/></td> </tr>
+    <tr> <td>Total Amount</td><td><input type="text" name="amount" readonly 
+        value="{{request.session.total}}" class="form-control"/></td> </tr>
+    <tr> <td></td><td><button type="submit" value="Login" class="btn btn-success form-control">Make Payment</button></td> </tr>
+
+</table>
+</form>
+{%endblock%}

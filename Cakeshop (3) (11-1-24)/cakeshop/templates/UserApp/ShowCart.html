@@ -1,0 +1,58 @@
+
+{%extends "UserApp/homepage.html"%}
+
+{%block content%}
+<script type="text/javascript">
+    function increment(myid)
+    {
+        var txtQty = document.getElementById(myid);       
+       qty  = parseInt(txtQty.value);
+       if(qty <10)
+       {
+        qty+=1;
+       }
+       txtQty.value = qty;
+    }
+    function decrement(myid)
+    {
+       var txtQty = document.getElementById(myid);       
+       qty  = parseInt(txtQty.value);
+       if(qty >2)
+       {
+        qty-=1;
+       }
+       txtQty.value = qty;
+    }
+</script>
+<table class="table" style="background-color: antiquewhite;">
+    <tr><th>Cake Name</th><th>Image</th><th>Cake Price</th>
+         <th>Quantity</th><th>Sub Total</th><th>Edit</th><th>Delete</tr>
+    {%for item in items%}
+    <form method="post">
+        {%csrf_token%}
+    <tr>
+        <td>{{item.cake.cake_name}}
+            <input type="hidden" name="cart_id" value="{{item.id}}"/>
+        </td>
+        <td>{{item.cake.image_url.url}}</td>
+        <td>{{item.cake.price}}</td>
+        <td><button type="button" class="btn btn-warning" onclick="decrement('qty{{item.id}}')" >  -  </button>
+             <input type="text" size="6" id="qty{{item.id}}" value="{{item.qty}}" name="qty"/>
+            <button type="button" class="btn btn-warning" onclick="increment('qty{{item.id}}')">  +  </button>
+        </td>
+        <td>{% widthratio item.cake.price 1 item.qty %}</td>
+        <td><button type="submit" class="btn btn-danger"  name="action" value="update">Update</a></td>
+        <td><button type="submit" class="btn btn-danger"  name="action" value="delete">Delete</a></td>
+    </tr>
+</form>
+    {%endfor%}
+</table>
+<hr/>
+<center>
+    <h3>Total Amount : {{request.session.total}}</h3>
+    <a href="/MakePayment">
+        <button type="button" class="btn btn-success">Proceed to Make Payment</button>
+    </a>
+</center>
+</form>
+{%endblock%}
